@@ -25,15 +25,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# API routes: /students ...
 app.include_router(student_controller.router)
 
-# Frontend: opening http://127.0.0.1:8000 in the browser shows frontend/index.html
 FRONTEND_FOLDER = Path(__file__).parent / "frontend"
 app.mount("/", StaticFiles(directory=FRONTEND_FOLDER, html=True), name="frontend")
-
-
-# Run this file directly (PyCharm Run button or:  python main.py)
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
