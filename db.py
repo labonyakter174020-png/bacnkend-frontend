@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 # MySQL server address. Format: mysql+pymysql://USERNAME:PASSWORD@HOST:PORT
 # XAMPP: username is root and the password is empty
 # SERVER_URL = "mysql+pymysql://root:root@localhost:3306"
-SERVER_URL ="postgresql+psycopg2://postgresql://training_mf0j_user:iwYsfewhpOIzQiphj89Vd4OPtbKU7oMx@dpg-dc36lv7lot8c7398km7g-a.oregon-postgres.render.com/training_mf0j"
+SERVER_URL ="postgresql+psycopg2://training_mf0j_user:iwYsfewhpOIzQiphj89Vd4OPtbKU7oMx@dpg-dc36lv7lot8c7398km7g-a.oregon-postgres.render.com/training_mf0j"
 # DB_NAME = "alchemyBD"
 
 # # Create the database automatically if it doesn't exist yet
@@ -27,7 +27,7 @@ SERVER_URL ="postgresql+psycopg2://postgresql://training_mf0j_user:iwYsfewhpOIzQ
 # # Full address of our database
 # DATABASE_URL = f"{SERVER_URL}/{DB_NAME}"
 
-engine = create_engine(SERVER_URL)
+engine = create_engine(SERVER_URL,pool_pre_ping= True, pool_recycle= 300)
 session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 base = declarative_base()
 
